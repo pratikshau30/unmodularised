@@ -3,8 +3,6 @@
  */
 package QKART_SANITY_LOGIN;
 
-import java.io.IOException;
-import java.sql.Timestamp;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,129 +10,107 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class QkartSanity {
 
-    public static void main(String[] args) throws InterruptedException, IOException {
+    public static void main(String[] args) throws Exception {
         System.out.println("Initializing Test !! ");
         WebDriver driver;
-        //IMPORTANT!: Enter the Driver Location here 
-        String driverLocation = "/Users/praveenkumar/Documents/CrioDo/Java_Workspace_Grouping/Module1_2TCs_Non_Standard/app/chromedriver";//IMPORTANT!: Enter the Driver Location here 
+        // IMPORTANT!: Enter the Driver Location here
+        String driverLocation = "/Users/praveenkumar/Documents/CrioDo/Java_Workspace_Grouping/Module1_2TCs_Non_Standard/app/chromedriver";// IMPORTANT!: Enter the Driver Location here
         System.setProperty("webdriver.chrome.driver", driverLocation);
 
         driver = new ChromeDriver();
-
-        System.out.print("Start Test: Test Case 1: Verify User Registration | completed @ "+java.time.LocalDateTime.now());
-
-        driver.get("https://crio-qkart-frontend.vercel.app/register"); // Navigating to the register page URL
-
-        WebElement usernameTxtBox = driver.findElement(By.id("username")); // Finding the Username Text Box
-
-        Timestamp timeStamp = new Timestamp(System.currentTimeMillis()); // Get time stamp for generating a unique
-                                                                         // username
-
-        String testDataUsername = "new_user_TC1_" + String.valueOf(timeStamp.getTime()); // concatenate the timestamp
-                                                                                           // to string to form unique
-                                                                                           // timestamp
         
-        usernameTxtBox.sendKeys(testDataUsername);// Type in username value
+        // TestCase 01
+        System.out.println(
+                "Start Test: Test Case 1: Verify the functionality of Login Button on the home page | completed @ "
+                        + java.time.LocalDateTime.now());
 
-        Thread.sleep(2000); // Wait for username to be filled
+        driver.get("https://crio-qkart-frontend.vercel.app/"); // Navigating to the home page of QKART
+        Thread.sleep(2000);
+        try {
+            WebElement loginButton = driver.findElement(By.xpath("//button[normalize-space()='Login']")); // Finding the Login Button
 
-        WebElement passwordTxtBox = driver.findElement(By.id("password")); // Finding the password Text Box
+            if (loginButton.isDisplayed()) // Check if the Login Button is displayed
+            {
+                System.out.println("Step: Test Case 1: Login Button is displayed in the home page: PASS | completed @ "
+                        + java.time.LocalDateTime.now());
+            } else {
+                System.out
+                        .println("Step: Test Case 1: Login Button is not displayed in the home page: FAIL | completed @ "
+                                + java.time.LocalDateTime.now());
+            }
+            loginButton.click(); // Click the login Button
+            Thread.sleep(5000);
+            String currentUrl = driver.getCurrentUrl();
+            if (currentUrl.endsWith("/login")) // check if the user is redirected to the login page
+            {
+                System.out.println(
+                        "Step: Test Case 1: On clicking the login button, user is navigated to login page : PASS | completed @ "
+                                + java.time.LocalDateTime.now());
+            } else {
+                System.out.println(
+                        "Step: Test Case 1: On clicking the login button, user is not navigated to login page : FAIL | completed @ "
+                                + java.time.LocalDateTime.now());
+                throw new Exception(
+                        "Test Case 1 has failed , When the login button is clicked, page does not re-direct to login page");
+            }
 
-        String testDataPassword = "abc@123";
-
-        passwordTxtBox.sendKeys(testDataPassword); // Entering the Password value
-
-        Thread.sleep(1000); // Wait for the password to be filled up
-
-        WebElement confirmPasswordTxtBox = driver.findElement(By.id("confirmPassword")); // Finding the Confirm
-                                                                                            // password text box
-
-        confirmPasswordTxtBox.sendKeys(testDataPassword); // Entering the Confirm Password Value
-
-        WebElement registerNowButton = driver.findElement(By.className("button")); // Finding the register now button
-
-        registerNowButton.click(); // clicking the register now button
-
-        Thread.sleep(5000); // Waif for registration to complete
-
-        driver.get("https://crio-qkart-frontend.vercel.app/login"); // Navigate to the Login Page
-
-        usernameTxtBox = driver.findElement(By.id("username")); // Finding the Username Text Box
-        usernameTxtBox.sendKeys(testDataUsername); // Enter the username in the login page
-
-        Thread.sleep(1000); // Wait for user name to be entered
-
-        passwordTxtBox = driver.findElement(By.id("password")); // Finding the password Text Box
-        passwordTxtBox.sendKeys(testDataPassword);
-
-        Thread.sleep(1000); // Wait for password to be entered
-
-        WebElement loginButton = driver.findElement(By.className("button")); // Click on Login Button
-
-        loginButton.click(); // click the login Button
-
-        Thread.sleep(5000); // Wait for login to complete
-
-        WebElement usernameLabel = driver.findElement(By.className("username-text")); // find the username label on the
-                                                                                       // top right of the page
-        String status = "";
-        String usernameLabelActual = usernameLabel.getText();
-        
-        if (usernameLabelActual.equals(testDataUsername)) {
-            status = "PASS";
-            System.out.println("Test Case Verification Successful. User Logged in Successfully | completed @ "+java.time.LocalDateTime.now());
-
-            WebElement logout_button = driver.findElement(By.className("MuiButton-text")); // Find the Logout Button
-
-            logout_button.click();
-        } else {
-            status = "FAIL";
-            System.out.println("Test Case Failure. User login verification failed");
+        } catch (Exception e) {
+            System.out.println(
+                    "End Test: Test Case 1: Verify the functionality of Login Button on the home page: FAIL | completed @ "
+                            + java.time.LocalDateTime.now());
+            throw new Exception("Test Case 1 has failed");
         }
 
-        System.out.println("End Test: Test Case 1: Verify user Regsitration : " + status);
+        System.out.println(
+                "End Test: Test Case 1: Verify the functionality of Login Button on the home page: PASS | completed @ "
+                        + java.time.LocalDateTime.now());
 
-        System.out.print("Start Test: Test Case 2: Verify User Registration with an existing username | completed @ "+java.time.LocalDateTime.now());
 
-        driver.get("https://crio-qkart-frontend.vercel.app/register"); // Navigating to the register page URL
+        //Test Case 02
+        System.out.println(
+                "Start Test: Test Case 2: Verify the functionality of Register Button on the home page | completed @ "
+                        + java.time.LocalDateTime.now());
 
-        usernameTxtBox = driver.findElement(By.id("username")); // Finding the Username Text Box
+        driver.get("https://crio-qkart-frontend.vercel.app/"); // Navigating to the home page of QKART
+        Thread.sleep(2000);
+        try {
+            WebElement registerButton = driver.findElement(By.xpath("//button[normalize-space()='Register']")); // Finding the register button                                                                                                        
 
-        usernameTxtBox.sendKeys(testDataUsername);// Type in the existing username
+            if (registerButton.isDisplayed()) // Check if the Register Button is displayed
+            {
+                System.out.println("Step: Test Case 1: Register Button is displayed in the home page: PASS | completed @ "
+                        + java.time.LocalDateTime.now());
+            } else {
+                System.out
+                        .println("Step: Test Case 1: register Button is not displayed in the home page: FAIL | completed @ "
+                                + java.time.LocalDateTime.now());
+            }
+            registerButton.click(); // Click the register Button
+            Thread.sleep(5000);
+            String currentUrl = driver.getCurrentUrl();
+            if (currentUrl.endsWith("/register")) // check if the user is redirected to the registration page
+            {
+                System.out.println(
+                        "Step: Test Case 2: On clicking the register button, user is navigated to registration page : PASS | completed @ "
+                                + java.time.LocalDateTime.now());
+            } else {
+                System.out.println(
+                        "Step: Test Case 2: On clicking the register button, user is not navigated to registration page : FAIL | completed @ "
+                                + java.time.LocalDateTime.now());
+                throw new Exception(
+                        "Test Case 2 has failed , When the register button is clicked, page does not re-direct to register page");
+            }
 
-        Thread.sleep(2000); // wait for user name to be entered
-
-        passwordTxtBox = driver.findElement(By.id("password")); // Finding the password Text Box
-
-        passwordTxtBox.sendKeys(testDataPassword); // Entering the password Information
-
-        Thread.sleep(2000); // wait for password to be entered
-
-        confirmPasswordTxtBox = driver.findElement(By.id("confirmPassword")); // Finding the Confirm password text
-                                                                                 // box
-
-        confirmPasswordTxtBox.sendKeys(testDataPassword); // Entering the Confirm Password Value
-
-        Thread.sleep(2000); // wait for Confirm password to be entered
-
-        registerNowButton = driver.findElement(By.className("button")); // Finding the register now button
-
-        registerNowButton.click(); // clicking the register now button
-
-        Thread.sleep(3000); // Wait for register verification
-
-        String current_url = driver.getCurrentUrl();
-
-        if (current_url.equals("https://crio-qkart-frontend.vercel.app/register")) {
-            status = "PASS";
-            System.out.println("Test Case Verification Successful. Exising user cannot re-register | completed @ "+java.time.LocalDateTime.now());
-        } else {
-            status = "FAIL";
-            System.out.println("Test Case Verification Failed. Exising user able to register | completed @ "+java.time.LocalDateTime.now());
+        } catch (Exception e) {
+            System.out.println(
+                    "End Test: Test Case 2: Verify the functionality of register Button on the home page: FAIL | completed @ "
+                            + java.time.LocalDateTime.now());
+            throw new Exception("Test Case 2 has failed");
         }
 
-        System.out.println("End Test: Test Case 2: Verify user Re-Regsitration : " + status +"| completed @ "+java.time.LocalDateTime.now());
-
+        System.out.println(
+                "End Test: Test Case 2: Verify the functionality of register Button on the home page: PASS | completed @ "
+                        + java.time.LocalDateTime.now());
         driver.quit();
 
     }
