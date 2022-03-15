@@ -10,108 +10,119 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class QkartSanity {
 
-    public static void main(String[] args) throws Exception {
-        System.out.println("Initializing Test !! ");
-        WebDriver driver;
-        // IMPORTANT!: Enter the Driver Location here
-        String driverLocation = "/Users/praveenkumar/Documents/CrioDo/Java_Workspace_Grouping/Module1_2TCs_Non_Standard/app/chromedriver";// IMPORTANT!: Enter the Driver Location here
-        System.setProperty("webdriver.chrome.driver", driverLocation);
+        public static void main(String[] args) throws Exception {
+                System.out.println("Initializing Test !! ");
+                WebDriver driver;
+                // IMPORTANT!: Enter the Driver Location here
+                String driverLocation = "";// IMPORTANT!:
+                                                                                                                                                  // Enter
+                                                                                                                                                  // the
+                                                                                                                                                  // Driver
+                                                                                                                                                  // Location
+                                                                                                                                                  // here
+                System.setProperty("webdriver.chrome.driver", driverLocation);
 
-        driver = new ChromeDriver();
-        
-        // TestCase 01
-        System.out.println(
-                "Start Test: Test Case 1: Verify the functionality of Login Button on the home page | completed @ "
-                        + java.time.LocalDateTime.now());
+                driver = new ChromeDriver();
 
-        driver.get("https://crio-qkart-frontend.vercel.app/"); // Navigating to the home page of QKART
-        Thread.sleep(2000);
-        try {
-            WebElement loginButton = driver.findElement(By.xpath("//button[normalize-space()='Login']")); // Finding the Login Button
-
-            if (loginButton.isDisplayed()) // Check if the Login Button is displayed
-            {
-                System.out.println("Step: Test Case 1: Login Button is displayed in the home page: PASS | completed @ "
-                        + java.time.LocalDateTime.now());
-            } else {
-                System.out
-                        .println("Step: Test Case 1: Login Button is not displayed in the home page: FAIL | completed @ "
-                                + java.time.LocalDateTime.now());
-            }
-            loginButton.click(); // Click the login Button
-            Thread.sleep(5000);
-            String currentUrl = driver.getCurrentUrl();
-            if (currentUrl.endsWith("/login")) // check if the user is redirected to the login page
-            {
+                // TestCase 01
                 System.out.println(
-                        "Step: Test Case 1: On clicking the login button, user is navigated to login page : PASS | completed @ "
-                                + java.time.LocalDateTime.now());
-            } else {
-                System.out.println(
-                        "Step: Test Case 1: On clicking the login button, user is not navigated to login page : FAIL | completed @ "
-                                + java.time.LocalDateTime.now());
-                throw new Exception(
-                        "Test Case 1 has failed , When the login button is clicked, page does not re-direct to login page");
-            }
+                                java.time.LocalDateTime.now()
+                                                + ": Start Test: Test Case 1: Verify the functionality of Login Button on the home page  ");
 
-        } catch (Exception e) {
-            System.out.println(
-                    "End Test: Test Case 1: Verify the functionality of Login Button on the home page: FAIL | completed @ "
-                            + java.time.LocalDateTime.now());
-            throw new Exception("Test Case 1 has failed");
+                driver.get("https://crio-qkart-frontend.vercel.app/"); // Navigating to the home page of QKART
+                Thread.sleep(2000);
+                try {
+                        WebElement loginButton = driver.findElement(By.xpath("//button[normalize-space()='Login']")); // Finding
+                                                                                                                      // the
+                                                                                                                      // Login
+                                                                                                                      // Button
+
+                        if (loginButton.isDisplayed()) // Check if the Login Button is displayed
+                        {
+                                System.out.println(java.time.LocalDateTime.now()
+                                                + ": Step: Test Case 1: Login Button is displayed in the home page: PASS  ");
+                        } else {
+                                System.out
+                                                .println("Step: Test Case 1: Login Button is not displayed in the home page: FAIL  "
+                                                                + java.time.LocalDateTime.now());
+                        }
+                        loginButton.click(); // Click the login Button
+                        Thread.sleep(5000);
+                        String currentUrl = driver.getCurrentUrl();
+                        if (currentUrl.endsWith("/login")) // check if the user is redirected to the login page
+                        {
+                                System.out.println(
+                                                java.time.LocalDateTime.now()
+                                                                + ": Step: Test Case 1: On clicking the login button, user is navigated to login page : PASS  ");
+                        } else {
+                                System.out.println(
+                                                java.time.LocalDateTime.now()
+                                                                + ": Step: Test Case 1: On clicking the login button, user is not navigated to login page : FAIL  ");
+                                throw new Exception(
+                                                "Test Case 1 has failed , When the login button is clicked, page does not re-direct to login page");
+                        }
+
+                } catch (Exception e) {
+                        System.out.println(
+                                        java.time.LocalDateTime.now()
+                                                        + ": End Test: Test Case 1: Verify the functionality of Login Button on the home page: FAIL  ");
+                        throw new Exception("Test Case 1 has failed");
+                }
+
+                System.out.println(
+                                java.time.LocalDateTime.now()
+                                                + ": End Test: Test Case 1: Verify the functionality of Login Button on the home page: PASS  ");
+
+                // Test Case 02
+                System.out.println(
+                                java.time.LocalDateTime.now()
+                                                + ": Start Test: Test Case 2: Verify the functionality of Register Button on the home page  ");
+
+                driver.get("https://crio-qkart-frontend.vercel.app/"); // Navigating to the home page of QKART
+                Thread.sleep(2000);
+                try {
+                        WebElement registerButton = driver
+                                        .findElement(By.xpath("//button[normalize-space()='Register']")); // Finding the
+                                                                                                          // register
+                                                                                                          // button
+
+                        if (registerButton.isDisplayed()) // Check if the Register Button is displayed
+                        {
+                                System.out.println(java.time.LocalDateTime.now()
+                                                + ": Step: Test Case 1: Register Button is displayed in the home page: PASS  ");
+                        } else {
+                                System.out
+                                                .println("Step: Test Case 1: register Button is not displayed in the home page: FAIL  "
+                                                                + java.time.LocalDateTime.now());
+                        }
+                        registerButton.click(); // Click the register Button
+                        Thread.sleep(5000);
+                        String currentUrl = driver.getCurrentUrl();
+                        if (currentUrl.endsWith("/register")) // check if the user is redirected to the registration
+                                                              // page
+                        {
+                                System.out.println(
+                                                java.time.LocalDateTime.now()
+                                                                + ": Step: Test Case 2: On clicking the register button, user is navigated to registration page : PASS  ");
+                        } else {
+                                System.out.println(
+                                                java.time.LocalDateTime.now()
+                                                                + ": Step: Test Case 2: On clicking the register button, user is not navigated to registration page : FAIL  ");
+                                throw new Exception(
+                                                "Test Case 2 has failed , When the register button is clicked, page does not re-direct to register page");
+                        }
+
+                } catch (Exception e) {
+                        System.out.println(
+                                        java.time.LocalDateTime.now()
+                                                        + ": End Test: Test Case 2: Verify the functionality of register Button on the home page: FAIL  ");
+                        throw new Exception("Test Case 2 has failed");
+                }
+
+                System.out.println(
+                                java.time.LocalDateTime.now()
+                                                + ": End Test: Test Case 2: Verify the functionality of register Button on the home page: PASS  ");
+                driver.quit();
+
         }
-
-        System.out.println(
-                "End Test: Test Case 1: Verify the functionality of Login Button on the home page: PASS | completed @ "
-                        + java.time.LocalDateTime.now());
-
-
-        //Test Case 02
-        System.out.println(
-                "Start Test: Test Case 2: Verify the functionality of Register Button on the home page | completed @ "
-                        + java.time.LocalDateTime.now());
-
-        driver.get("https://crio-qkart-frontend.vercel.app/"); // Navigating to the home page of QKART
-        Thread.sleep(2000);
-        try {
-            WebElement registerButton = driver.findElement(By.xpath("//button[normalize-space()='Register']")); // Finding the register button                                                                                                        
-
-            if (registerButton.isDisplayed()) // Check if the Register Button is displayed
-            {
-                System.out.println("Step: Test Case 1: Register Button is displayed in the home page: PASS | completed @ "
-                        + java.time.LocalDateTime.now());
-            } else {
-                System.out
-                        .println("Step: Test Case 1: register Button is not displayed in the home page: FAIL | completed @ "
-                                + java.time.LocalDateTime.now());
-            }
-            registerButton.click(); // Click the register Button
-            Thread.sleep(5000);
-            String currentUrl = driver.getCurrentUrl();
-            if (currentUrl.endsWith("/register")) // check if the user is redirected to the registration page
-            {
-                System.out.println(
-                        "Step: Test Case 2: On clicking the register button, user is navigated to registration page : PASS | completed @ "
-                                + java.time.LocalDateTime.now());
-            } else {
-                System.out.println(
-                        "Step: Test Case 2: On clicking the register button, user is not navigated to registration page : FAIL | completed @ "
-                                + java.time.LocalDateTime.now());
-                throw new Exception(
-                        "Test Case 2 has failed , When the register button is clicked, page does not re-direct to register page");
-            }
-
-        } catch (Exception e) {
-            System.out.println(
-                    "End Test: Test Case 2: Verify the functionality of register Button on the home page: FAIL | completed @ "
-                            + java.time.LocalDateTime.now());
-            throw new Exception("Test Case 2 has failed");
-        }
-
-        System.out.println(
-                "End Test: Test Case 2: Verify the functionality of register Button on the home page: PASS | completed @ "
-                        + java.time.LocalDateTime.now());
-        driver.quit();
-
-    }
 }
