@@ -3,21 +3,26 @@
  */
 package QKART_SANITY_LOGIN;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.BrowserType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class QkartSanity {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception, MalformedURLException {
         System.out.println("Initializing Test !! ");
-        WebDriver driver;
-        // TODO: CRIO_TASK_MODULE_DEBUGGING: IMPORTANT! Enter the Driver Location here
-        String driverLocation = "";
-        System.setProperty("webdriver.chrome.driver", driverLocation);
 
-        driver = new ChromeDriver();
+        // Launch Browser using Zalenium
+        final DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setBrowserName(BrowserType.CHROME);
+        RemoteWebDriver driver = new RemoteWebDriver(new URL("http://localhost:8082/wd/hub"), capabilities);
 
         // TestCase 01
         System.out.println(
