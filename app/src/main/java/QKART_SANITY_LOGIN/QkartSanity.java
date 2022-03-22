@@ -25,7 +25,7 @@ public class QkartSanity {
                         + ": Start Test: Test Case 1: Verify the functionality of Login Button on the home page  ");
 
         // Navigate to the home page of QKART
-        driver.get("https://crio-qkart-frontend.vercel.app/");
+        driver.get("https://crio-qkart-frontend-qa.vercel.app/");
         Thread.sleep(2000);
         try {
             // Find the Login button
@@ -77,7 +77,7 @@ public class QkartSanity {
                         + ": Start Test: Test Case 2: Verify the functionality of Register Button on the home page  ");
 
         // Navigate to the home page of QKART
-        driver.get("https://crio-qkart-frontend.vercel.app/");
+        driver.get("https://crio-qkart-frontend-qa.vercel.app/");
         Thread.sleep(2000);
         try {
             // Find the Register button
