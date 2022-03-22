@@ -1,6 +1,0 @@
-#Pre-Reqs
-☐ @high Git Operations through VS code or the choosen idea needs to be taught
-☐ @high Ability to do the Java libraries should be covered
-☐ @high Gradle setup should be covered 
-✔ @critical Java Naming Conversion  Classes: Title case , Variable names and method names  = Camel Case , Package names should be lower cases , @done (1/15/2022, 8:00:23 PM)
-☐ @high  during session cover the difference between  driver.close and driver.quit
